@@ -2,14 +2,14 @@ import { StyleSheet, View, Text } from 'react-native'
 import { gStyle } from '../styles/style'
 import LoginButton from './LoginButton'
 import InputIcon from './InputIcon'
-import { User } from '../assets/icons/User'
+import { Login } from '../assets/icons/Login'
 import { Password } from '../assets/icons/Password'
 
 export default function LoginForm() {
   return (
     <View style={gStyle.loginForm}>
         <View style={{ gap: 15 }}>
-            <InputIcon placeholder='Login' Icon={User} />
+            <InputIcon placeholder='Login' Icon={Login} />
             <InputIcon placeholder='Password' Icon={Password} />
         </View>
         <View style={{ gap: 12 }}>

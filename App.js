@@ -3,7 +3,7 @@ import { StyleSheet, View, ImageBackground } from 'react-native'
 import { gStyle } from './styles/style'
 import * as Font from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
-import LoginPage from './pages/LoginPage'
+import Navigate from './navigate'
 
 const loadFonts = async () => {
   await Font.loadAsync({ 
@@ -38,10 +38,8 @@ export default function App() {
 
   return (
     <View style={{ flex: 1 }}>
-      <ImageBackground style={gStyle.bgImg} source={require('./assets/bg.png')}>
-        <LoginPage />
-      </ImageBackground>
-    </View>
+      <Navigate />
+    </View> 
   )
 }
 
