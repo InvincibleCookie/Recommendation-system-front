@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 export const gStyle = StyleSheet.create({
     main: {
@@ -42,8 +42,6 @@ export const gStyle = StyleSheet.create({
     },
     bgImg: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     loginForm: {
         display: 'flex',
@@ -57,5 +55,5 @@ export const gStyle = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 25,
-    }
+    },
 })

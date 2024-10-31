@@ -6,7 +6,10 @@ import { Logo } from '../assets/icons/Logo'
 export default function LoginPage() {
   return (
     <View style={gStyle.main}>
-        <ImageBackground style={gStyle.bgImg} source={require('../assets/bg/bgLogin.png')}>
+        <ImageBackground
+            style={[gStyle.bgImg, {justifyContent: 'center', alignItems: 'center'}]}
+            source={require('../assets/bg/bgLogin.png')}
+        >
             <Logo />
             <View style={{ gap: 5, marginBottom: 30 }}>
                 <Text style={gStyle.title}>
@@ -24,9 +27,9 @@ export default function LoginPage() {
             </View>
         </ImageBackground>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
 
-});
+})

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { StyleSheet, View, ImageBackground } from 'react-native'
-import { gStyle } from './styles/style'
+import { StyleSheet, View } from 'react-native'
 import * as Font from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import Navigate from './navigate'
@@ -10,8 +9,8 @@ const loadFonts = async () => {
     'cs-black': require('./assets/fonts/CircularStd-Black.ttf'), 
     'os-regular': require('./assets/fonts/OpenSans-Regular.ttf'),
     'os-semibold': require('./assets/fonts/OpenSans-SemiBold.ttf'),
-  });
-};
+  })
+}
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false)
@@ -45,4 +44,4 @@ export default function App() {
 
 const styles = StyleSheet.create({
 
-});
+})

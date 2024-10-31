@@ -17,9 +17,9 @@ export default function LoginForm() {
           <Text style={gStyle.subTitle}>Forgot password?</Text>
         </View>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
 
-});
+})

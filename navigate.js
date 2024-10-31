@@ -21,7 +21,7 @@ export default function Navigate() {
         <Tab.Navigator
             screenOptions={({ route }) => ({ 
 
-                tabBarIcon: ({ focused, color, size }) => {
+                tabBarIcon: ({ focused }) => {
                   let Icon
       
                   if (route.name === 'Recommendations') {

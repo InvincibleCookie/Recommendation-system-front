@@ -3,7 +3,7 @@ import { View, TextInput, StyleSheet } from 'react-native'
 import { gStyle } from '../styles/style'
 
 export default function InputIcon({ placeholder, Icon }) {
-    const [isFocused, setIsFocused] = useState(false);
+    const [isFocused, setIsFocused] = useState(false)
 
     return (
         <View style={[gStyle.input, isFocused && gStyle.focusedInput]}>
@@ -21,4 +21,4 @@ export default function InputIcon({ placeholder, Icon }) {
 
 const styles = StyleSheet.create({
     
-});
+})
