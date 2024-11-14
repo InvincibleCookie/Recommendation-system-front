@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, ImageBackground, TouchableWithoutFeedback } from 'react-native'
-import LoginForm from '../components/LoginForm'
+import RegForm from '../components/RegForm'
 import { gStyle } from '../styles/style'
 import { Logo } from '../assets/icons/Logo'
 
-export default function LoginPage({ navigation }) {
+export default function RegPage({ navigation }) {
   return (
     <View style={gStyle.main}>
         <ImageBackground
@@ -20,11 +20,11 @@ export default function LoginPage({ navigation }) {
                     <Text style={{ color: '#DAA3F0' }}> ReadRecs</Text>.
                 </Text>
             </View>
-            <LoginForm />
+            <RegForm />
             <View style={{ gap: 7 }}>
-                <Text style={[gStyle.subTitle, { marginTop: 35 }]}>Don't have an account yet?</Text>
-                <TouchableWithoutFeedback onPress={() => navigation.navigate("RegPage")}>
-                    <Text style={gStyle.link}>Create one now</Text>
+                <Text style={[gStyle.subTitle, { marginTop: 35 }]}>Already have an account?</Text>
+                <TouchableWithoutFeedback onPress={() => navigation.navigate("LoginPage")}>
+                    <Text style={gStyle.link}>Log In</Text>
                 </TouchableWithoutFeedback>
             </View>
         </ImageBackground>

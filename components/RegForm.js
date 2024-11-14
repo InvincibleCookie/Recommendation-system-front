@@ -4,17 +4,18 @@ import LoginButton from './LoginButton'
 import InputIcon from './InputIcon'
 import { Login } from '../assets/icons/Login'
 import { Password } from '../assets/icons/Password'
+import { Email } from '../assets/icons/Email'
 
-export default function LoginForm() {
+export default function RegForm() {
   return (
     <View style={gStyle.loginForm}>
         <View style={{ gap: 15 }}>
             <InputIcon placeholder='Username' Icon={Login} />
+            <InputIcon placeholder='Email' Icon={Email} />
             <InputIcon placeholder='Password' Icon={Password} />
         </View>
         <View style={{ gap: 12 }}>
-          <LoginButton title={'Log In'} onPress={() => console.log('submit')} />
-          <Text style={gStyle.subTitle}>Forgot password?</Text>
+          <LoginButton title={'Sign up'} onPress={() => console.log('submit')} />
         </View>
     </View>
   )

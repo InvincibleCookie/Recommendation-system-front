@@ -9,6 +9,8 @@ import {
   Image
 } from 'react-native'
 import { gStyle } from '../styles/style'
+import AddBookCard from '../components/AddBookCard'
+import DropShadow from 'react-native-drop-shadow'
 
 export default function Library() {
   const [books, setBooks] = useState([
@@ -28,23 +30,38 @@ export default function Library() {
             </Text>
             <FlatList
               style={{height: '100%'}}
-              data={books}
+              data={[...books, {key: books.length}]}
               numColumns={2}
               columnWrapperStyle={{
                 justifyContent: 'space-between',
               }}
               keyExtractor={item => item.key}
-              renderItem={({item}) => (
-                <View style={{paddingBottom: 17}}>
-                  <Image
-                    borderRadius={10}
-                    source={{
-                      width: 166,
-                      height: 250,
-                      uri: item.img,
-                    }}
-                  />
-                </View>
+              renderItem={({item, index}) => (
+                <DropShadow
+                  style={{
+                    paddingBottom: 17,
+                    shadowColor: '#000',
+                    shadowOffset: {
+                      width: 0,
+                      height: 4,
+                    },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 7
+                  }}
+                >
+                  {index !== books.length ? (
+                    <Image
+                      source={{uri: item.img}}
+                      style={{
+                        width: 166,
+                        height: 250,
+                        borderRadius: 10
+                      }}               
+                    />
+                  ) : (
+                    <AddBookCard />
+                  )}
+                </DropShadow>
               )}
             />
           </SafeAreaView>

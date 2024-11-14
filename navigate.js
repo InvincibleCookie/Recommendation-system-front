@@ -1,5 +1,6 @@
 import React from 'react'
 import LoginPage from './pages/LoginPage'
+import RegPage from './pages/RegPage'
 import Recommendations from './pages/Recommendations'
 import Library from './pages/Library'
 
@@ -12,8 +13,21 @@ import { UserOutline } from './assets/icons/UserOutline'
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createStackNavigator } from "@react-navigation/stack"
 
 const Tab = createBottomTabNavigator()
+const Stack = createStackNavigator()
+
+function StackNavigate() {
+  return (
+    <Stack.Navigator
+      screenOptions={{headerShown: false}}
+    >
+      <Stack.Screen name="LoginPage" component={LoginPage} />
+      <Stack.Screen name="RegPage" component={RegPage} />
+    </Stack.Navigator>
+  )
+}
 
 export default function Navigate() {
     return (
@@ -28,7 +42,7 @@ export default function Navigate() {
                     Icon = focused ? <Home /> : <HomeOutline  />
                   } else if (route.name === 'Library') {
                     Icon = focused ? <Lib /> : <LibOutline />
-                  } else if (route.name === 'LoginPage') {
+                  } else if (route.name === 'StackNavigate') {
                     Icon = focused ? <User /> : <UserOutline />
                   }
 
@@ -55,10 +69,10 @@ export default function Navigate() {
                 component={Library}
             />
             <Tab.Screen
-                name="LoginPage"
-                component={LoginPage}
+                name="StackNavigate"
+                component={StackNavigate}
             />
         </Tab.Navigator>
       </NavigationContainer>
     )
-  }
+}

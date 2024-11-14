@@ -7,6 +7,7 @@ export const Login = (props) => (
     height={27}
     viewBox="0 0 27 27"
     fill="none"
+    strokeWidth={2}
     {...props}
   >
     <Path d="M13.635 14.3775C13.5573 14.3674 13.4561 14.3674 13.365 14.3775C11.3838 14.31 9.8111 12.69 9.8111 10.6987C9.8111 8.66362 11.4547 7.00987 13.5 7.00987C15.5351 7.00987 17.1888 8.66362 17.1888 10.6987C17.1787 12.69 15.6161 14.31 13.635 14.3775Z" stroke="#7E7974" stroke-width="2" stroke-miterlimit="133.333" stroke-linecap="round" stroke-linejoin="round"/>

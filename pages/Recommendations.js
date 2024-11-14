@@ -8,6 +8,7 @@ import {
   Image,
   SafeAreaView
 } from 'react-native'
+import DropShadow from 'react-native-drop-shadow'
 import { gStyle } from '../styles/style'
 
 export default function Recommendations() {
@@ -37,7 +38,18 @@ export default function Recommendations() {
             }}
             keyExtractor={item => item.key}
             renderItem={({item}) => (
-              <View style={{paddingBottom: 17}}>
+              <DropShadow
+                  style={{
+                    paddingBottom: 17,
+                    shadowColor: '#000',
+                    shadowOffset: {
+                      width: 0,
+                      height: 4,
+                    },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 7
+                  }}
+                >
                 <Image
                   borderRadius={10}
                   source={{
@@ -46,7 +58,7 @@ export default function Recommendations() {
                     uri: item.img,
                   }}
                 />
-              </View>
+              </DropShadow>
           )}
           />
         </SafeAreaView>
