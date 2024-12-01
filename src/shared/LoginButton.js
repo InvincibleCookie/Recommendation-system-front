@@ -1,13 +1,13 @@
-import { LinearGradient } from 'expo-linear-gradient'
-import { StyleSheet, Text, TouchableWithoutFeedback } from 'react-native'
-import { gStyle } from '../styles/style'
+import { LinearGradient } from "expo-linear-gradient"
+import { StyleSheet, Text, TouchableWithoutFeedback } from "react-native"
+import { gStyle } from "../../styles/style"
 
 export default function LoginButton({ title, onPress }) {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <LinearGradient
         style={gStyle.button}
-        colors={['#981F62', '#F96041']}
+        colors={["#981F62", "#F96041"]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
       >
@@ -17,6 +17,4 @@ export default function LoginButton({ title, onPress }) {
   )
 }
 
-const styles = StyleSheet.create({
-
-})
+const styles = StyleSheet.create({})

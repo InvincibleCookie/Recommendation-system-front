@@ -1,47 +1,45 @@
-import { useState, useEffect } from 'react'
-import { StyleSheet, View } from 'react-native'
-import * as Font from 'expo-font'
-import * as SplashScreen from 'expo-splash-screen'
-import Navigate from './navigate'
+import { useState, useEffect } from "react";
+import { StyleSheet, View } from "react-native";
+import * as Font from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import Navigate from "./src/app/navigate";
 
 const loadFonts = async () => {
-  await Font.loadAsync({ 
-    'cs-black': require('./assets/fonts/CircularStd-Black.ttf'), 
-    'os-regular': require('./assets/fonts/OpenSans-Regular.ttf'),
-    'os-semibold': require('./assets/fonts/OpenSans-SemiBold.ttf'),
-  })
-}
+  await Font.loadAsync({
+    "cs-black": require("./assets/fonts/CircularStd-Black.ttf"),
+    "os-regular": require("./assets/fonts/OpenSans-Regular.ttf"),
+    "os-semibold": require("./assets/fonts/OpenSans-SemiBold.ttf"),
+  });
+};
 
 export default function App() {
-  const [fontsLoaded, setFontsLoaded] = useState(false)
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
   useEffect(() => {
     const prepare = async () => {
-      await SplashScreen.preventAutoHideAsync()
+      await SplashScreen.preventAutoHideAsync();
       try {
-        await loadFonts()
+        await loadFonts();
       } catch (e) {
-        console.warn(e)
+        console.warn(e);
       } finally {
-        setFontsLoaded(true)
-        await SplashScreen.hideAsync()
+        setFontsLoaded(true);
+        await SplashScreen.hideAsync();
       }
-    }
+    };
 
-    prepare()
-  }, [])
+    prepare();
+  }, []);
 
   if (!fontsLoaded) {
-    return null
+    return null;
   }
 
   return (
     <View style={{ flex: 1 }}>
       <Navigate />
-    </View> 
-  )
+    </View>
+  );
 }
 
-const styles = StyleSheet.create({
-
-})
+const styles = StyleSheet.create({});

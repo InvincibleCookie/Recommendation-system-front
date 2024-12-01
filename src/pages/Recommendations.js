@@ -9,7 +9,7 @@ import {
   SafeAreaView
 } from 'react-native'
 import DropShadow from 'react-native-drop-shadow'
-import { gStyle } from '../styles/style'
+import { gStyle } from '../../styles/style'
 
 export default function Recommendations() {
   const [books, setBooks] = useState([
@@ -23,7 +23,7 @@ export default function Recommendations() {
 
   return (
     <View style={gStyle.main}>
-      <ImageBackground style={gStyle.bgImg} source={require('../assets/bg/bgRecs.png')}>
+      <ImageBackground style={gStyle.bgImg} source={require('../../assets/bg/bgRecs.png')}>
         <SafeAreaView style={{ marginHorizontal: 22, marginBottom: 50 }}>
           <Text style={[gStyle.title, {textAlign: 'left', marginBottom: 24}]}>
             Discover your
