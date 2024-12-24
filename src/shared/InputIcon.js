@@ -7,6 +7,7 @@ export default function InputIcon({
   Icon,
   value,
   onChangeText,
+  isPassword
 }) {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -18,6 +19,7 @@ export default function InputIcon({
         style={[gStyle.text, { flex: 1 }]}
         placeholder={placeholder}
         placeholderTextColor={"#7E7974"}
+        secureTextEntry={isPassword ? isPassword : false}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         onChangeText={onChangeText}

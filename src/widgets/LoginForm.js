@@ -6,27 +6,29 @@ import { Login } from "../../assets/icons/Login"
 import { Password } from "../../assets/icons/Password"
 import { Formik } from 'formik'
 import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function LoginForm({ logIn }) {
   const login = (values) => {
-
-    if (values.username !== '' && values.password !== '') {
+    if (values.username && values.password) {
       axios.post('http://2.59.40.149:8000/users/login',
-        {
+        new URLSearchParams({ 
           username: values.username,
-          password: values.password
-        },
+          password: values.password,
+        }),
         {
-          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
         }
       )
-      .then(({status}) => {
-        if (status === 200) {
-          logIn()
-        }
+      .then(({ data }) => {
+        AsyncStorage.setItem('access', data.access_token)
+        AsyncStorage.setItem('refresh', data.refresh_token)
+        logIn()
       })
-      .catch(() => {
-        console.log('Ошибка')
+      .catch(error => {
+        console.log(error.response.data)
       })
     }
   }
@@ -38,13 +40,13 @@ export default function LoginForm({ logIn }) {
           username: '',
           password: '',
         }}
-        onSubmit={(values, action) => {
+        onSubmit={(values) => {
           login(values)
         }}
       >
         {(props) => (
           <View style={gStyle.loginForm}>
-            <View style={{ gap: 15 }}>
+            <View style={{ gap: 15, width: '100%' }}>
               <InputIcon
                 placeholder="Username"
                 Icon={Login}
@@ -52,6 +54,7 @@ export default function LoginForm({ logIn }) {
                 onChangeText={props.handleChange('username')}
               />
               <InputIcon
+                isPassword={true}
                 placeholder="Password"
                 Icon={Password}
                 value={props.values.password}

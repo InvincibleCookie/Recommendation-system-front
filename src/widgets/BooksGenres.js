@@ -1,71 +1,45 @@
-import { useState } from "react"
-import { StyleSheet, View, Text, FlatList } from "react-native"
+import { useEffect, useState } from "react"
+import { StyleSheet, View, FlatList } from "react-native"
 import GenreCard from "../shared/GenreCard"
 
-export default function BooksGenres() {
+export default function BooksGenres({setGenre}) {
     const [genres, setGenres] = useState([
         {
-            key: '1',
-            name: 'Fantasy',
+            key: 36,
+            name: 'Mystery',
             isActive: true,
         },
         {
-            key: '2',
-            name: 'Romance',
+            key: 38,
+            name: 'Fantasy',
             isActive: false,
         },
         {
-            key: '3',
-            name: 'Horror',
+            key: 41,
+            name: 'Historical Fiction',
             isActive: false,
         },
         {
-            key: '4',
-            name: 'Thriller',
+            key: 94,
+            name: 'Non-fiction',
             isActive: false,
         },
         {
-            key: '5',
-            name: 'Young Adult',
-            isActive: false,
-        },
-        {
-            key: '6',
+            key: 126,
             name: 'Classic',
-            isActive: false,
-        },
-        {
-            key: '7',
-            name: 'History',
-            isActive: false,
-        },
-        {
-            key: '8',
-            name: 'Biography',
-            isActive: false,
-        },
-        {
-            key: '9',
-            name: 'Psychology',
-            isActive: false,
-        },
-        {
-            key: '10',
-            name: 'Self Help',
-            isActive: false,
-        },
-        {
-            key: '11',
-            name: 'More genres',
             isActive: false,
         },
     ])
 
     const chooseGenre = (key) => {
-        setGenres(genres.map((item, index) => 
-            index === key ? {...item, isActive: true} : {...item, isActive: false}
+        setGenres(genres.map((item) => 
+            item.key === key ? {...item, isActive: true} : {...item, isActive: false}
         ))
     }
+
+    useEffect(() => {
+        setGenre((genres.find(item => item.isActive)).key)
+    }, [])
 
     return (
         <View>
@@ -79,7 +53,10 @@ export default function BooksGenres() {
                         <GenreCard
                             name={item.name}
                             isActive={item.isActive}
-                            onPress={() => chooseGenre(index)}
+                            onPress={() => {
+                                chooseGenre(item.key)
+                                setGenre(item.key)
+                            }}
                         />
                     </View>
                 )}

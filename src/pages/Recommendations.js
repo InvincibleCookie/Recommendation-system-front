@@ -1,25 +1,45 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   StyleSheet,
   Text,
   View,
   ImageBackground,
   FlatList,
-  Image,
   SafeAreaView
 } from 'react-native'
-import DropShadow from 'react-native-drop-shadow'
 import { gStyle } from '../../styles/style'
+import BookCard from '../shared/BookCard'
+import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function Recommendations() {
-  const [books, setBooks] = useState([
-    { key: '1', img: 'https://cdn1.ozone.ru/s3/multimedia-c/6895272036.jpg' },
-    { key: '2', img: 'https://static10.labirint.ru/books/884693/cover.jpg' },
-    { key: '3', img: 'https://avatars.mds.yandex.net/i?id=652f57ea7ceb4c732bf71c8fc74e4133_l-10870279-images-thumbs&n=13' },
-    { key: '4', img: 'https://img.fusedlearning.com/img/humanities/217/imperialism-viewed-through-kokoro.jpg' },
-    { key: '5', img: 'https://i.pinimg.com/736x/32/e9/32/32e932a5b352f628510d43980f4e5458.jpg' },
-    { key: '6', img: 'https://avatars.mds.yandex.net/i?id=389e3e59efac547f2305717a03af957f_l-12896214-images-thumbs&n=13' },
-  ])
+  const [isLoading, setIsLoading] = useState(false)
+  const [books, setBooks] = useState([])
+
+  useEffect(() => {
+    setIsLoading(true)
+    const getData = async () => {
+      const token = await AsyncStorage.getItem('access')
+      axios.get('http://2.59.40.149:8000/ai/book/all', 
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
+      )
+        .then(({ data }) => {
+          setBooks(data.recommend)
+          setIsLoading(false)
+        })
+        .catch(error => {
+          console.log(error.response.data)
+          setIsLoading(false)
+        })
+    }
+  
+    getData()
+  }, [])
+  
 
   return (
     <View style={gStyle.main}>
@@ -29,38 +49,29 @@ export default function Recommendations() {
             Discover your
             <Text style={{ color: '#DAA3F0' }}> ReadRecs</Text>
           </Text>
-          <FlatList
-            style={{height: '100%'}}
-            data={books}
-            numColumns={2}
-            columnWrapperStyle={{
-              justifyContent: 'space-between',
-            }}
-            keyExtractor={item => item.key}
-            renderItem={({item}) => (
-              <DropShadow
-                  style={{
-                    paddingBottom: 17,
-                    shadowColor: '#000',
-                    shadowOffset: {
-                      width: 0,
-                      height: 4,
-                    },
-                    shadowOpacity: 0.25,
-                    shadowRadius: 7
-                  }}
-                >
-                <Image
-                  borderRadius={10}
-                  source={{
-                    width: 166,
-                    height: 250,
-                    uri: item.img,
-                  }}
+          {!isLoading ? (
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              data={books}
+              numColumns={2}
+              columnWrapperStyle={{
+                justifyContent: 'space-between',
+              }}
+              keyExtractor={(item) => item.title}
+              renderItem={({ item }) => (
+                <BookCard
+                  name={item.title}
+                  uri={item.cover_link}
+                  // isSelected={genreBooks.includes(item)}
+                  // onPress={() => toggleCurrent(item)}
                 />
-              </DropShadow>
+              )}
+            />
+          ) : (
+            <View style={{ marginTop: 250 }}>
+              <Text style={gStyle.title}>Loading...</Text>
+            </View>
           )}
-          />
         </SafeAreaView>
       </ImageBackground>
     </View>

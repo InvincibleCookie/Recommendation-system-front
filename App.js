@@ -9,6 +9,7 @@ const loadFonts = async () => {
     "cs-black": require("./assets/fonts/CircularStd-Black.ttf"),
     "os-regular": require("./assets/fonts/OpenSans-Regular.ttf"),
     "os-semibold": require("./assets/fonts/OpenSans-SemiBold.ttf"),
+    "as-regular": require("./assets/fonts/AssociateSans-Regular.ttf")
   });
 };
 

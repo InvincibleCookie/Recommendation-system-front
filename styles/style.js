@@ -18,7 +18,7 @@ export const gStyle = StyleSheet.create({
     },
     text: {
         color: 'white',
-        fontFamily: 'os-regular',
+        fontFamily: 'as-regular',
     },
     link: {
         fontSize: 18,
@@ -28,7 +28,6 @@ export const gStyle = StyleSheet.create({
         textDecorationLine: 'underline',
     },
     input: {
-        width: 350,
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#25153A',
@@ -47,13 +46,5 @@ export const gStyle = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         gap: 30,
-    },
-    button: {
-        width: 350,
-        height: 50,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 25,
     },
 })

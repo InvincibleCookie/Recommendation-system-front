@@ -1,90 +1,49 @@
 import { useState } from "react"
 import {
   StyleSheet,
-  Text,
   View,
   ImageBackground,
-  SafeAreaView,
-  FlatList,
-  Image,
 } from "react-native"
 import { gStyle } from "../../styles/style"
-import AddBookCard from "../shared/AddBookCard"
-import SearchInput from "../shared/SearchInput"
-import DropShadow from "react-native-drop-shadow"
-import { validatePathConfig } from "@react-navigation/native"
-import BooksGenres from "../widgets/BooksGenres"
+import SelectFavoriteBooks from "../widgets/SelectFavoriteBooks"
+import SelectedBooksList from "../widgets/SelectedBooksList"
 
-export default function FavoriteBook() {
-  const [books, setBooks] = useState([
-    {
-      key: "1",
-      img: "https://avatars.mds.yandex.net/i?id=e6e96eb20039d949bf535cbf3884a501_l-4391775-images-thumbs&n=13",
-    },
-    {
-      key: "2",
-      img: "https://www.wanderluluu.com/wp-content/uploads/2021/11/34.png",
-    },
-    { key: "3", img: "https://cdn1.ozone.ru/multimedia/1026320353.jpg" },
-  ]);
+export default function FavoriteBook({ navigation }) {
+    const [isNext, setIsNext] = useState(false)
 
-  return (
-    <View style={gStyle.main}>
-      <ImageBackground
-        style={gStyle.bgImg}
-        source={require("../../assets/bg/bgLib.png")}
-      >
-        <SafeAreaView style={{ marginHorizontal: 22, marginBottom: 50, gap: 16 }}>
-            <Text style={[gStyle.title, { textAlign: "left" }]}>
-                Pick your
-                <Text style={{ color: "#DE8370" }}> favorite </Text>
-                books
-            </Text>
-            <SearchInput
-                value={''}
-                onChangeText={() => console.log('')}
-            />
-            <BooksGenres />
-            <FlatList
-                style={{ height: "100%" }}
-                data={[...books, { key: books.length }]}
-                numColumns={2}
-                columnWrapperStyle={{
-                    justifyContent: "space-between",
-                }}
-                keyExtractor={(item) => item.key}
-                renderItem={({ item, index }) => (
-                    <DropShadow
-                        style={{
-                            paddingBottom: 17,
-                            shadowColor: "#000",
-                            shadowOffset: {
-                                width: 0,
-                                height: 4,
-                            },
-                            shadowOpacity: 0.25,
-                            shadowRadius: 7,
-                        }}
-                    >
-                        {index !== books.length ? (
-                            <Image
-                                source={{ uri: item.img }}
-                                style={{
-                                    width: 166,
-                                    height: 250,
-                                    borderRadius: 10,
-                                }}
-                            />
-                        ) : (
-                            <AddBookCard />
-                        )}
-                    </DropShadow>
+    const [current, setCurrent] = useState([])
+
+    const toggleCurrent = (book) => {
+        const id = book.id
+        const res = current.find(item => item.id === id)
+        if (res) {
+            setCurrent(current.filter(item => item.id !== id))
+        } else {
+            setCurrent([...current, book])
+        }
+    }
+
+    return (
+        <View style={gStyle.main}>
+            <ImageBackground
+                style={gStyle.bgImg}
+                source={require("../../assets/bg/bgLib.png")}
+            >
+                {!isNext ? (
+                    <SelectFavoriteBooks
+                        current={current}
+                        toggleCurrent={(book) => toggleCurrent(book)}
+                        setIsNext={() => setIsNext(true)}
+                    />
+                ) : (
+                    <SelectedBooksList
+                        current={current}
+                        navigate={() => navigation.navigate("TabNavigate")}
+                    />
                 )}
-            />
-        </SafeAreaView>
-      </ImageBackground>
-    </View>
-  );
+            </ImageBackground>
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({})

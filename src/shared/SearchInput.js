@@ -6,9 +6,10 @@ import { Search } from "../../assets/icons/Search";
 export default function SearchInput({
   value,
   onChangeText,
+  isFocused,
+  onFocus,
+  onBlur
 }) {
-  const [isFocused, setIsFocused] = useState(false);
-
   return (
     <View style={[gStyle.input, isFocused && gStyle.focusedInput]}>
       <TextInput
@@ -16,9 +17,9 @@ export default function SearchInput({
         style={[gStyle.text, { flex: 1 }]}
         placeholder='Search books'
         placeholderTextColor={"#7E7974"}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-        onChangeText={onChangeText}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onChangeText={(text) => onChangeText(text)}
       />
       <Search style={{ marginLeft: 10 }} />
     </View>

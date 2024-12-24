@@ -1,8 +1,7 @@
-import { LinearGradient } from "expo-linear-gradient";
-import { StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
-import { Plus } from "../../assets/icons/Plus";
-import DropShadow from "react-native-drop-shadow";
-import { BlurView } from "expo-blur";
+import { LinearGradient } from "expo-linear-gradient"
+import { StyleSheet, Text, TouchableWithoutFeedback } from "react-native"
+import { Plus } from "../../assets/icons/Plus"
+import DropShadow from "react-native-drop-shadow"
 
 export default function AddBookCard({ onPress }) {
   return (
